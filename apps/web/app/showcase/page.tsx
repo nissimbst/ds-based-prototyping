@@ -70,6 +70,28 @@ import {
   AlertDialogTrigger,
 } from "@workspace/ui/components/alert-dialog"
 import { AspectRatio } from "@workspace/ui/components/aspect-ratio"
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@workspace/ui/components/collapsible"
+import {
+  ContextMenu,
+  ContextMenuContent,
+  ContextMenuItem,
+  ContextMenuTrigger,
+  ContextMenuSeparator,
+  ContextMenuShortcut,
+} from "@workspace/ui/components/context-menu"
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+  type CarouselApi,
+} from "@workspace/ui/components/carousel"
+import { ChevronsUpDown } from "lucide-react"
 
 // Assuming you might want an icon for alerts or dialogs later
 // import { Terminal } from "lucide-react"
@@ -77,6 +99,10 @@ import { AspectRatio } from "@workspace/ui/components/aspect-ratio"
 export default function ShowcasePage() {
   const [date, setDate] = React.useState<Date | undefined>(new Date())
   const [openCommand, setOpenCommand] = React.useState(false)
+  const [isCollapsibleOpen, setIsCollapsibleOpen] = React.useState(false)
+  const [carouselApi, setCarouselApi] = React.useState<CarouselApi>()
+  const [carouselCurrent, setCarouselCurrent] = React.useState(0)
+  const [carouselCount, setCarouselCount] = React.useState(0)
 
   // Effect for command palette keybinding (optional, but common)
   React.useEffect(() => {
@@ -89,6 +115,19 @@ export default function ShowcasePage() {
     document.addEventListener("keydown", down)
     return () => document.removeEventListener("keydown", down)
   }, [])
+
+  React.useEffect(() => {
+    if (!carouselApi) {
+      return
+    }
+
+    setCarouselCount(carouselApi.scrollSnapList().length)
+    setCarouselCurrent(carouselApi.selectedScrollSnap() + 1)
+
+    carouselApi.on("select", () => {
+      setCarouselCurrent(carouselApi.selectedScrollSnap() + 1)
+    })
+  }, [carouselApi])
 
   return (
     <div className="container mx-auto p-8 space-y-12">
@@ -409,6 +448,83 @@ export default function ShowcasePage() {
            <p className="text-center text-sm text-muted-foreground mt-2">
             Image constrained to 16:9 aspect ratio.
            </p>
+        </div>
+      </section>
+
+      {/* Collapsible Section */}
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Collapsible</h2>
+        <Collapsible
+          open={isCollapsibleOpen}
+          onOpenChange={setIsCollapsibleOpen}
+          className="w-[350px] space-y-2"
+        >
+          <div className="flex items-center justify-between space-x-4 px-4">
+            <h4 className="text-sm font-semibold">
+              @peduarte starred 3 repositories
+            </h4>
+            <CollapsibleTrigger asChild>
+              <Button variant="ghost" size="sm" className="w-9 p-0">
+                <ChevronsUpDown className="h-4 w-4" />
+                <span className="sr-only">Toggle</span>
+              </Button>
+            </CollapsibleTrigger>
+          </div>
+          <div className="rounded-md border px-4 py-3 font-mono text-sm">
+            @radix-ui/primitives
+          </div>
+          <CollapsibleContent className="space-y-2">
+            <div className="rounded-md border px-4 py-3 font-mono text-sm">
+              @radix-ui/colors
+            </div>
+            <div className="rounded-md border px-4 py-3 font-mono text-sm">
+              @stitches/react
+            </div>
+          </CollapsibleContent>
+        </Collapsible>
+      </section>
+
+      {/* Context Menu Section */}
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Context Menu</h2>
+        <ContextMenu>
+          <ContextMenuTrigger className="flex h-[150px] w-[300px] items-center justify-center rounded-md border border-dashed text-sm">
+            Right-click here
+          </ContextMenuTrigger>
+          <ContextMenuContent className="w-64">
+            <ContextMenuItem inset>Back</ContextMenuItem>
+            <ContextMenuItem inset disabled>Forward</ContextMenuItem>
+            <ContextMenuItem inset>Reload</ContextMenuItem>
+            <ContextMenuSeparator />
+            <ContextMenuItem inset>Save Page As...</ContextMenuItem>
+            <ContextMenuItem inset>Print...</ContextMenuItem>
+            <ContextMenuSeparator />
+             <ContextMenuItem inset>View Page Source</ContextMenuItem>
+             <ContextMenuItem inset>Inspect</ContextMenuItem>
+          </ContextMenuContent>
+        </ContextMenu>
+      </section>
+
+      {/* Carousel Section */}
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Carousel</h2>
+        <Carousel setApi={setCarouselApi} className="w-full max-w-xs mx-auto">
+          <CarouselContent>
+            {Array.from({ length: 5 }).map((_, index) => (
+              <CarouselItem key={index}>
+                <Card>
+                  <CardContent className="flex aspect-square items-center justify-center p-6">
+                    <span className="text-4xl font-semibold">{index + 1}</span>
+                  </CardContent>
+                </Card>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious />
+          <CarouselNext />
+        </Carousel>
+        <div className="py-2 text-center text-sm text-muted-foreground">
+          Slide {carouselCurrent} of {carouselCount}
         </div>
       </section>
 

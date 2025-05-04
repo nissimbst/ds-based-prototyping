@@ -39,8 +39,11 @@ This file serves as the **single-source of truth** for how the repository is org
 │   │   │   │   ├── button.tsx
 │   │   │   │   ├── calendar.tsx
 │   │   │   │   ├── card.tsx
+│   │   │   │   ├── carousel.tsx
 │   │   │   │   ├── checkbox.tsx
+│   │   │   │   ├── collapsible.tsx
 │   │   │   │   ├── command.tsx
+│   │   │   │   ├── context-menu.tsx
 │   │   │   │   ├── dialog.tsx
 │   │   │   │   ├── input.tsx
 │   │   │   │   ├── label.tsx
