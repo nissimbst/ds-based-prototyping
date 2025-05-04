@@ -31,11 +31,53 @@ import {
 } from "@workspace/ui/components/dialog"
 import { Alert, AlertDescription, AlertTitle } from "@workspace/ui/components/alert"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@workspace/ui/components/tabs"
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@workspace/ui/components/accordion"
+import { Avatar, AvatarFallback, AvatarImage } from "@workspace/ui/components/avatar"
+import { Badge } from "@workspace/ui/components/badge"
+import { Calendar } from "@workspace/ui/components/calendar"
+import {
+  Command,
+  CommandDialog,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+  CommandSeparator,
+  CommandShortcut,
+} from "@workspace/ui/components/command"
+import {
+  Calculator,
+  CreditCard,
+  Settings,
+  Smile,
+  User,
+} from "lucide-react"
 
 // Assuming you might want an icon for alerts or dialogs later
 // import { Terminal } from "lucide-react"
 
 export default function ShowcasePage() {
+  const [date, setDate] = React.useState<Date | undefined>(new Date())
+  const [openCommand, setOpenCommand] = React.useState(false)
+
+  // Effect for command palette keybinding (optional, but common)
+  React.useEffect(() => {
+    const down = (e: KeyboardEvent) => {
+      if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
+        e.preventDefault()
+        setOpenCommand((open) => !open)
+      }
+    }
+    document.addEventListener("keydown", down)
+    return () => document.removeEventListener("keydown", down)
+  }, [])
+
   return (
     <div className="container mx-auto p-8 space-y-12">
       <h1 className="text-3xl font-bold mb-8">UI Component Showcase</h1>
@@ -197,6 +239,124 @@ export default function ShowcasePage() {
             Change your password here.
           </TabsContent>
         </Tabs>
+      </section>
+
+      {/* Accordion Section */}
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Accordion</h2>
+        <Accordion type="single" collapsible className="w-full max-w-md">
+          <AccordionItem value="item-1">
+            <AccordionTrigger>Is it accessible?</AccordionTrigger>
+            <AccordionContent>
+              Yes. It adheres to the WAI-ARIA design pattern.
+            </AccordionContent>
+          </AccordionItem>
+          <AccordionItem value="item-2">
+            <AccordionTrigger>Is it styled?</AccordionTrigger>
+            <AccordionContent>
+              Yes. It comes with default styles that matches the other components' aesthetic.
+            </AccordionContent>
+          </AccordionItem>
+          <AccordionItem value="item-3">
+            <AccordionTrigger>Is it animated?</AccordionTrigger>
+            <AccordionContent>
+              Yes. It's animated by default, but you can disable it if you prefer.
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
+      </section>
+
+      {/* Avatar Section */}
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Avatar</h2>
+        <div className="flex gap-4">
+         <Avatar>
+            {/* Replace with a real image URL */}
+            <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+            <AvatarFallback>CN</AvatarFallback>
+          </Avatar>
+          <Avatar>
+             {/* Example with fallback only */}
+            <AvatarFallback>JD</AvatarFallback>
+          </Avatar>
+        </div>
+      </section>
+
+      {/* Badge Section */}
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Badge</h2>
+        <div className="flex flex-wrap gap-4">
+          <Badge>Default</Badge>
+          <Badge variant="secondary">Secondary</Badge>
+          <Badge variant="outline">Outline</Badge>
+          <Badge variant="destructive">Destructive</Badge>
+        </div>
+      </section>
+
+      {/* Calendar Section */}
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Calendar</h2>
+        <div className="flex justify-center">
+          <Calendar
+            mode="single"
+            selected={date}
+            onSelect={setDate}
+            className="rounded-md border"
+          />
+        </div>
+         <p className="text-center text-sm text-muted-foreground mt-2">
+          Selected date: {date ? date.toLocaleDateString() : "None"}
+        </p>
+      </section>
+
+      {/* Command Section */}
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Command</h2>
+        <p className="text-sm text-muted-foreground mb-2">
+          Press{" "}
+          <kbd className="pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground opacity-100">
+            <span className="text-xs">⌘</span>K
+          </kbd>{" "}
+          or{" "}
+          <kbd className="pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground opacity-100">
+            <span className="text-xs">Ctrl</span>K
+          </kbd>{" "}
+          to open the command palette (or click the button).
+        </p>
+         <Button variant="outline" onClick={() => setOpenCommand(true)}>
+          Open Command Palette
+        </Button>
+
+        <CommandDialog open={openCommand} onOpenChange={setOpenCommand}>
+          <CommandInput placeholder="Type a command or search..." />
+          <CommandList>
+            <CommandEmpty>No results found.</CommandEmpty>
+            <CommandGroup heading="Suggestions">
+              <CommandItem>
+                <Smile className="mr-2 h-4 w-4" />
+                <span>Search Emoji</span>
+              </CommandItem>
+            </CommandGroup>
+            <CommandSeparator />
+            <CommandGroup heading="Settings">
+              <CommandItem>
+                <User className="mr-2 h-4 w-4" />
+                <span>Profile</span>
+                <CommandShortcut>⌘P</CommandShortcut>
+              </CommandItem>
+              <CommandItem>
+                <CreditCard className="mr-2 h-4 w-4" />
+                <span>Billing</span>
+                <CommandShortcut>⌘B</CommandShortcut>
+              </CommandItem>
+              <CommandItem>
+                <Settings className="mr-2 h-4 w-4" />
+                <span>Settings</span>
+                <CommandShortcut>⌘S</CommandShortcut>
+              </CommandItem>
+            </CommandGroup>
+          </CommandList>
+        </CommandDialog>
       </section>
 
     </div>
