@@ -30,6 +30,7 @@
     "@types/react-dom": "^19",
     "@workspace/eslint-config": "workspace:^",
     "@workspace/typescript-config": "workspace:*",
+    "recharts": "^2.15.3",
     "typescript": "^5.7.3"
   }
 }
