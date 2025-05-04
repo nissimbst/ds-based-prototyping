@@ -9,41 +9,64 @@ This file serves as the **single-source of truth** for how the repository is org
 ```
 .
 ├── apps/
-│   └── web/                # Next 13 app-router code
+│   └── web/                # Next.js application
 │       ├── app/
+│       │   ├── dashboard/
+│       │   │   ├── data.json
+│       │   │   └── page.tsx
+│       │   ├── favicon.ico
 │       │   ├── layout.tsx
+│       │   ├── login/
+│       │   │   └── page.tsx
 │       │   ├── page.tsx
-│       │   └── login/
+│       │   └── showcase/
 │       │       └── page.tsx
 │       ├── components/
+│       │   ├── app-sidebar.tsx
+│       │   ├── chart-area-interactive.tsx
 │       │   ├── login-form.tsx
-│       │   └── providers.tsx
+│       │   ├── nav-main.tsx
+│       │   ├── nav-projects.tsx
+│       │   ├── nav-user.tsx
+│       │   ├── providers.tsx
+│       │   ├── team-switcher.tsx
+│       │   └── theme-toggle-button.tsx
 │       ├── hooks/          # (placeholder)
 │       ├── lib/            # (placeholder)
 │       ├── eslint.config.js
 │       ├── components.json
+│       ├── next-env.d.ts
 │       ├── next.config.mjs
+│       ├── package.json
 │       ├── postcss.config.mjs
 │       └── tsconfig.json
 │
 ├── packages/
 │   ├── ui/                 # Design-system / shared UI
 │   │   ├── src/
+│   │   │   ├── app/        # <-- CHECK: Seems misplaced based on rules
+│   │   │   │   └── dashboard/
+│   │   │   │       └── data.json
 │   │   │   ├── components/
 │   │   │   │   ├── accordion.tsx
-│   │   │   │   ├── alert.tsx
 │   │   │   │   ├── alert-dialog.tsx
+│   │   │   │   ├── alert.tsx
+│   │   │   │   ├── app-sidebar.tsx
 │   │   │   │   ├── aspect-ratio.tsx
 │   │   │   │   ├── avatar.tsx
 │   │   │   │   ├── badge.tsx
+│   │   │   │   ├── breadcrumb.tsx
 │   │   │   │   ├── button.tsx
 │   │   │   │   ├── calendar.tsx
 │   │   │   │   ├── card.tsx
 │   │   │   │   ├── carousel.tsx
+│   │   │   │   ├── chart-area-interactive.tsx
+│   │   │   │   ├── chart.tsx
 │   │   │   │   ├── checkbox.tsx
 │   │   │   │   ├── collapsible.tsx
 │   │   │   │   ├── command.tsx
 │   │   │   │   ├── context-menu.tsx
+│   │   │   │   ├── data-table.tsx
 │   │   │   │   ├── dialog.tsx
 │   │   │   │   ├── drawer.tsx
 │   │   │   │   ├── dropdown-menu.tsx
@@ -52,6 +75,11 @@ This file serves as the **single-source of truth** for how the repository is org
 │   │   │   │   ├── input.tsx
 │   │   │   │   ├── label.tsx
 │   │   │   │   ├── menubar.tsx
+│   │   │   │   ├── nav-documents.tsx
+│   │   │   │   ├── nav-main.tsx
+│   │   │   │   ├── nav-projects.tsx
+│   │   │   │   ├── nav-secondary.tsx
+│   │   │   │   ├── nav-user.tsx
 │   │   │   │   ├── navigation-menu.tsx
 │   │   │   │   ├── pagination.tsx
 │   │   │   │   ├── popover.tsx
@@ -59,39 +87,61 @@ This file serves as the **single-source of truth** for how the repository is org
 │   │   │   │   ├── radio-group.tsx
 │   │   │   │   ├── resizable.tsx
 │   │   │   │   ├── scroll-area.tsx
+│   │   │   │   ├── section-cards.tsx
 │   │   │   │   ├── select.tsx
 │   │   │   │   ├── separator.tsx
 │   │   │   │   ├── sheet.tsx
+│   │   │   │   ├── sidebar.tsx
+│   │   │   │   ├── site-header.tsx
 │   │   │   │   ├── skeleton.tsx
 │   │   │   │   ├── slider.tsx
 │   │   │   │   ├── sonner.tsx
 │   │   │   │   ├── switch.tsx
 │   │   │   │   ├── table.tsx
 │   │   │   │   ├── tabs.tsx
+│   │   │   │   ├── team-switcher.tsx
 │   │   │   │   ├── textarea.tsx
-│   │   │   │   ├── toggle.tsx
 │   │   │   │   ├── toggle-group.tsx
+│   │   │   │   ├── toggle.tsx
 │   │   │   │   └── tooltip.tsx
-│   │   │   ├── hooks/      # (placeholder)
+│   │   │   ├── hooks/
+│   │   │   │   └── use-mobile.ts
 │   │   │   ├── lib/
 │   │   │   │   └── utils.ts
-│   │   │   └── styles/
-│   │   │       └── globals.css
+│   │   │   ├── styles/
+│   │   │   │   └── globals.css
+│   │   │   └── index.ts    # Barrel file
 │   │   ├── components.json
 │   │   ├── eslint.config.js
+│   │   ├── package.json
 │   │   ├── postcss.config.mjs
 │   │   ├── tailwind.config.ts
 │   │   ├── tsconfig.json
 │   │   └── tsconfig.lint.json
 │   │
 │   ├── eslint-config/      # Shared ESLint preset
+│   │   ├── README.md
+│   │   ├── base.js
+│   │   ├── next.js
+│   │   ├── package.json
+│   │   └── react-internal.js
+│   │
 │   └── typescript-config/  # Shared TS-config base
+│       ├── README.md
+│       ├── base.json
+│       ├── nextjs.json
+│       ├── package.json
+│       └── react-library.json
 │
-├── .eslintrc.js            # root eslint extender
-├── tsconfig.json           # root TS references map
-├── turbo.json              # Turborepo pipeline
+├── MigrationPrompt.md
+├── PROJECT_STRUCTURE_RULES.md
+├── README.md
+├── ReplicatePrompt.md
+├── package.json
+├── pnpm-lock.yaml
 ├── pnpm-workspace.yaml
-└── README.md
+├── tsconfig.json           # root TS references map
+└── turbo.json              # Turborepo pipeline
 ```
 
 > **Note:** `node_modules/**` and build artefacts are omitted for brevity.
@@ -144,4 +194,4 @@ This file serves as the **single-source of truth** for how the repository is org
 
 ---
 
-**Last updated:** <!--CURSOR:TIMESTAMP--> 
+**Last updated:** CURSOR_TIMESTAMP 
