@@ -30,10 +30,20 @@ This file serves as the **single-source of truth** for how the repository is org
 │   ├── ui/                 # Design-system / shared UI
 │   │   ├── src/
 │   │   │   ├── components/
+│   │   │   │   ├── accordion.tsx
+│   │   │   │   ├── alert.tsx
+│   │   │   │   ├── avatar.tsx
+│   │   │   │   ├── badge.tsx
 │   │   │   │   ├── button.tsx
+│   │   │   │   ├── calendar.tsx
 │   │   │   │   ├── card.tsx
+│   │   │   │   ├── checkbox.tsx
+│   │   │   │   ├── command.tsx
+│   │   │   │   ├── dialog.tsx
 │   │   │   │   ├── input.tsx
-│   │   │   │   └── label.tsx
+│   │   │   │   ├── label.tsx
+│   │   │   │   ├── select.tsx
+│   │   │   │   └── tabs.tsx
 │   │   │   ├── hooks/      # (placeholder)
 │   │   │   ├── lib/
 │   │   │   │   └── utils.ts
@@ -42,6 +52,7 @@ This file serves as the **single-source of truth** for how the repository is org
 │   │   ├── components.json
 │   │   ├── eslint.config.js
 │   │   ├── postcss.config.mjs
+│   │   ├── tailwind.config.ts
 │   │   ├── tsconfig.json
 │   │   └── tsconfig.lint.json
 │   │
