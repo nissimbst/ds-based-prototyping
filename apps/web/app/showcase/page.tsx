@@ -58,6 +58,18 @@ import {
   Smile,
   User,
 } from "lucide-react"
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@workspace/ui/components/alert-dialog"
+import { AspectRatio } from "@workspace/ui/components/aspect-ratio"
 
 // Assuming you might want an icon for alerts or dialogs later
 // import { Terminal } from "lucide-react"
@@ -357,6 +369,47 @@ export default function ShowcasePage() {
             </CommandGroup>
           </CommandList>
         </CommandDialog>
+      </section>
+
+      {/* Alert Dialog Section */}
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Alert Dialog</h2>
+        <AlertDialog>
+          <AlertDialogTrigger asChild>
+            <Button variant="outline">Show Alert Dialog</Button>
+          </AlertDialogTrigger>
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+              <AlertDialogDescription>
+                This action cannot be undone. This will permanently delete your
+                account and remove your data from our servers.
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogCancel>Cancel</AlertDialogCancel>
+              <AlertDialogAction>Continue</AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
+      </section>
+
+      {/* Aspect Ratio Section */}
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Aspect Ratio</h2>
+        <div className="w-[450px]">
+          <AspectRatio ratio={16 / 9} className="bg-muted rounded-md overflow-hidden">
+            {/* Replace with a real image component if desired */}
+            <img
+              src="https://images.unsplash.com/photo-1588345921523-c2dcdb7f1dcd?w=800&dpr=2&q=80"
+              alt="Photo by Drew Beamer"
+              className="object-cover w-full h-full"
+            />
+          </AspectRatio>
+           <p className="text-center text-sm text-muted-foreground mt-2">
+            Image constrained to 16:9 aspect ratio.
+           </p>
+        </div>
       </section>
 
     </div>

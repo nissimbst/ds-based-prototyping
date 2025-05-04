@@ -32,6 +32,8 @@ This file serves as the **single-source of truth** for how the repository is org
 │   │   │   ├── components/
 │   │   │   │   ├── accordion.tsx
 │   │   │   │   ├── alert.tsx
+│   │   │   │   ├── alert-dialog.tsx
+│   │   │   │   ├── aspect-ratio.tsx
 │   │   │   │   ├── avatar.tsx
 │   │   │   │   ├── badge.tsx
 │   │   │   │   ├── button.tsx
