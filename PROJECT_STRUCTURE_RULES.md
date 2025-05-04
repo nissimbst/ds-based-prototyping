@@ -45,10 +45,33 @@ This file serves as the **single-source of truth** for how the repository is org
 │   │   │   │   ├── command.tsx
 │   │   │   │   ├── context-menu.tsx
 │   │   │   │   ├── dialog.tsx
+│   │   │   │   ├── drawer.tsx
+│   │   │   │   ├── dropdown-menu.tsx
+│   │   │   │   ├── form.tsx
+│   │   │   │   ├── hover-card.tsx
 │   │   │   │   ├── input.tsx
 │   │   │   │   ├── label.tsx
+│   │   │   │   ├── menubar.tsx
+│   │   │   │   ├── navigation-menu.tsx
+│   │   │   │   ├── pagination.tsx
+│   │   │   │   ├── popover.tsx
+│   │   │   │   ├── progress.tsx
+│   │   │   │   ├── radio-group.tsx
+│   │   │   │   ├── resizable.tsx
+│   │   │   │   ├── scroll-area.tsx
 │   │   │   │   ├── select.tsx
-│   │   │   │   └── tabs.tsx
+│   │   │   │   ├── separator.tsx
+│   │   │   │   ├── sheet.tsx
+│   │   │   │   ├── skeleton.tsx
+│   │   │   │   ├── slider.tsx
+│   │   │   │   ├── sonner.tsx
+│   │   │   │   ├── switch.tsx
+│   │   │   │   ├── table.tsx
+│   │   │   │   ├── tabs.tsx
+│   │   │   │   ├── textarea.tsx
+│   │   │   │   ├── toggle.tsx
+│   │   │   │   ├── toggle-group.tsx
+│   │   │   │   └── tooltip.tsx
 │   │   │   ├── hooks/      # (placeholder)
 │   │   │   ├── lib/
 │   │   │   │   └── utils.ts
